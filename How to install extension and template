@@ -1,0 +1,23 @@
+Open Cart  1.X Installing Plug in
+
+For installing an already existing extension, you just need to upload the extension XML file into your /vqmod/xml directory. 
+After successful installation of vqmod there should be by default just one file there, called
+"vqmod_opencart.xml" you should not touch it for any reason.
+
+If you don't want to use the extensions anymore, remove the extensions's XML file from the /vqmod/xml directory  
+
+
+Open cart 1.X / 2.X installing template 
+
+For installing and additional template on the webshop, you should know all templetes are stored in:
+
+/catalog/view/theme
+
+directory. To use a different template than the default one there, you should first upload it into the "theme" directory.
+Go to the direction  System>Settings>
+Store the from the dropdown menu and choose your template. 
+After having done that just click on save and your webshop should have a new look.
+
+Open Cart 2.X  installing plugin
+
+By using open card 2.X, go to the Extensions>Extensions installer tab in your admin panel and upload the desireable extensions.

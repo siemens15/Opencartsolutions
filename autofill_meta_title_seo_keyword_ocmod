@@ -11,10 +11,12 @@
 		    </search>
 			<add><![CDATA[
 
+			// begin of the javascript function for autofullfil in products
+			
 <script type="text/javascript">
 $(document).ready(function(){          
 	var key_input = $("input[name=keyword]");
-	if(!key_input.val()) {
+	if(!key_input.val()) {     // begin of the input
 		$("input[name^='product_description'],input[name^='model']").keyup(function() {
 			var SEOlink = $("input[name^='product_description']").val();
 			SEOlink = SEOlink.replace(/^\s+|\s+$/g, '');
@@ -51,6 +53,8 @@ $(document).ready(function(){
 });
 </script>
 
+// required lines in order to work with different languages than english
+
 <script type="text/javascript"><!--
 $(document).ready(function(){          
 <?php foreach ($languages as $language) { ?>
@@ -75,6 +79,7 @@ $(document).ready(function(){
 		    </search>
 			<add><![CDATA[
 
+			// begin of the javascript function for autofullfil in Categories
 
 <script type="text/javascript">
 $(document).ready(function(){          
@@ -84,6 +89,7 @@ $(document).ready(function(){
 			var SEOlink = $("input[name^='category_description']").val();
 			SEOlink = SEOlink.replace(/^\s+|\s+$/g, '');
 			SEOlink = SEOlink.toLowerCase();
+			// remove accents, swap, etc
             var from = "àáäâèéëêìíïîòóöôùúüûñcçcllštžýnrrd·/_,:;";
             var to   = "aaaaeeeeiiiioooouuuuncccllstzynrrd------";
 			  
@@ -93,12 +99,13 @@ $(document).ready(function(){
 			  
 			SEOlink = SEOlink.replace(/[^a-z0-9( -]/g, '').replace(/\(/g,"-").replace(/\s+/g, '-').replace(/-+/g, '-'); // remove invalid chars, collapse whitespace and replace by -, collapse dashes
 			  
-			key_input.val(SEOlink);		
+			key_input.val(SEOlink);	
 		});
 	}
 });
 </script>
 
+// required lines in order to work with different languages than english
 <script type="text/javascript"><!--
 $(document).ready(function(){          
 <?php foreach ($languages as $language) { ?>
@@ -115,6 +122,6 @@ $(document).ready(function(){
 		  ]]>
 		  </add>
 		</operation>
-	</file>		  	  
+	</file>			  
 
 </modification>

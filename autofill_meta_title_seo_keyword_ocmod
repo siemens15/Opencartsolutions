@@ -1,0 +1,120 @@
+<modification>
+  <name>Auto fill meta title Seo keyword</name>
+  <code>basicseoadmintools</code>
+  <version>1.0</version>
+  <author>Angel Petrov Niek Rood</author>
+
+	
+	<file path="admin/view/template/catalog/product_form.tpl">
+		<operation error="log">
+			<search position="replace"><![CDATA[<?php echo $footer; ?>]]>
+		    </search>
+			<add><![CDATA[
+
+<script type="text/javascript">
+$(document).ready(function(){          
+	var key_input = $("input[name=keyword]");
+	if(!key_input.val()) {
+		$("input[name^='product_description'],input[name^='model']").keyup(function() {
+			var SEOlink = $("input[name^='product_description']").val();
+			SEOlink = SEOlink.replace(/^\s+|\s+$/g, '');
+			SEOlink = SEOlink.toLowerCase();
+			// remove accents, swap, etc
+            var from = "àáäâèéëêìíïîòóöôùúüûñcçcllštžýnrrd·/_,:;";
+            var to   = "aaaaeeeeiiiioooouuuuncccllstzynrrd------";
+			  
+			for (var i=0, l=from.length ; i<l ; i++) {
+				SEOlink = SEOlink.replace(new RegExp(from.charAt(i), 'g'), to.charAt(i));
+			}
+			  
+			SEOlink = SEOlink.replace(/[^a-z0-9( -]/g, '').replace(/\(/g,"-").replace(/\s+/g, '-').replace(/-+/g, '-'); // remove invalid chars, collapse whitespace and replace by -, collapse dashes
+
+			if ($("input[name^='model']").length) {
+				var model = $("input[name^='model']").val();
+				model = model.replace('.html');
+				model = model.toLowerCase();
+
+				for (var i=0, l=from.length ; i<l ; i++) {
+				  model = model.replace('.html');
+				}
+				
+				model = model.replace(/[^a-z0-9 -]/g, '').replace(/\s+/g, '-').replace(/-+/g, '-'); // remove invalid chars, collapse whitespace and replace by -, collapse dashes
+			}
+			  
+			if (model) {
+				key_input.val(SEOlink+'-'+model+'.html');
+			} else {
+				key_input.val(SEOlink+'.html');
+			}			
+		});
+	}
+});
+</script>
+
+<script type="text/javascript"><!--
+$(document).ready(function(){          
+<?php foreach ($languages as $language) { ?>
+	var meta_input = $("#input-meta-title<?php echo $language['language_id']; ?>");
+	if(!meta_input.val()) {
+		$("#input-name<?php echo $language['language_id']; ?>").on('keyup', function() {
+			$("#input-meta-title<?php echo $language['language_id']; ?>").val($(this).val());
+		});
+	}
+});
+<?php } ?>
+//--></script>
+<?php echo $footer; ?>
+		  ]]>
+		  </add>
+		</operation>
+	</file>
+	
+	<file path="admin/view/template/catalog/category_form.tpl">
+		<operation error="log">
+			<search position="replace"><![CDATA[<?php echo $footer; ?>]]>
+		    </search>
+			<add><![CDATA[
+
+
+<script type="text/javascript">
+$(document).ready(function(){          
+	var key_input = $("input[name=keyword]");
+	if(!key_input.val()) {
+		$("input[name^='category_description']").keyup(function() {
+			var SEOlink = $("input[name^='category_description']").val();
+			SEOlink = SEOlink.replace(/^\s+|\s+$/g, '');
+			SEOlink = SEOlink.toLowerCase();
+            var from = "àáäâèéëêìíïîòóöôùúüûñcçcllštžýnrrd·/_,:;";
+            var to   = "aaaaeeeeiiiioooouuuuncccllstzynrrd------";
+			  
+			for (var i=0, l=from.length ; i<l ; i++) {
+				SEOlink = SEOlink.replace(new RegExp(from.charAt(i), 'g'), to.charAt(i));
+			}
+			  
+			SEOlink = SEOlink.replace(/[^a-z0-9( -]/g, '').replace(/\(/g,"-").replace(/\s+/g, '-').replace(/-+/g, '-'); // remove invalid chars, collapse whitespace and replace by -, collapse dashes
+			  
+			key_input.val(SEOlink);		
+		});
+	}
+});
+</script>
+
+<script type="text/javascript"><!--
+$(document).ready(function(){          
+<?php foreach ($languages as $language) { ?>
+	var meta_input = $("#input-meta-title<?php echo $language['language_id']; ?>");
+	if(!meta_input.val()) {
+		$("#input-name<?php echo $language['language_id']; ?>").on('keyup', function() {
+			$('#input-meta-title<?php echo $language['language_id']; ?>').val($(this).val());
+		});
+	}
+<?php } ?>
+});
+//--></script>
+<?php echo $footer; ?>
+		  ]]>
+		  </add>
+		</operation>
+	</file>		  	  
+
+</modification>
